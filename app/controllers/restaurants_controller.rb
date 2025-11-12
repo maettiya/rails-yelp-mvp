@@ -36,31 +36,31 @@ class RestaurantsController < ApplicationController
     redirect_to restaurants_path, status: :see_other
   end
 
-  def seed
-  require "faker"
+#   def seed
+#   require "faker"
 
-  Review.destroy_all
-  Restaurant.destroy_all
+#   Review.destroy_all
+#   Restaurant.destroy_all
 
-  10.times do
-    restaurant = Restaurant.create!(
-      name: Faker::Restaurant.name,
-      address: Faker::Address.full_address,
-      phone_number: Faker::PhoneNumber.phone_number_with_country_code,
-      category: Restaurant::CATEGORY.sample
-    )
+#   10.times do
+#     restaurant = Restaurant.create!(
+#       name: Faker::Restaurant.name,
+#       address: Faker::Address.full_address,
+#       phone_number: Faker::PhoneNumber.phone_number_with_country_code,
+#       category: Restaurant::CATEGORY.sample
+#     )
 
-    rand(2..5).times do
-      Review.create!(
-        content: Faker::Restaurant.review,
-        rating: rand(1..5),
-        restaurant: restaurant
-      )
-    end
-  end
+#     rand(2..5).times do
+#       Review.create!(
+#         content: Faker::Restaurant.review,
+#         rating: rand(1..5),
+#         restaurant: restaurant
+#       )
+#     end
+#   end
 
-  redirect_to restaurants_path, notice: "Database seeded successfully!"
-end
+#   redirect_to restaurants_path, notice: "Database seeded successfully!"
+# end
 
   private
 

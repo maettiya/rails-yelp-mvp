@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   root to: "restaurants#index"
 
-  get "seed", to: "restaurants#seed"
+  # get "seed", to: "restaurants#seed"
 
   # SHOW ALL RESTAURANTS
   # get "restaurants", to: "restaurants#index", as: "restaurants"
