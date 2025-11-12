@@ -1,0 +1,45 @@
+<div class="min-vh-100 d-flex flex-column justify-content-center align-items-center text-center"
+     style="background-image: url('https://images.pexels.com/photos/13674457/pexels-photo-13674457.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;">
+  <!-- Title -->
+  <h1 class="display-2 fw-bold text-light mb-4 p-4">RESTAURANTS</h1>
+  <!-- Add New Restaurant Button -->
+  <%= link_to new_restaurant_path, class: "btn btn-light btn-lg mb-5 fw-semibold d-flex align-items-center justify-content-center gap-2 px-4 py-2 shadow" do %>
+    <i class="fa-solid fa-plus"></i>
+    Add New Restaurant
+  <% end %>
+  <!-- Restaurant Cards -->
+  <div class="d-flex flex-wrap justify-content-center gap-5 px-3">
+    <% @restaurants.each do |restaurant| %>
+      <div class="card shadow-lg border-0 rounded-4 overflow-hidden text-light"
+           style="width: 22rem;
+                  background: rgba(255, 255, 255, 0.15);
+                  backdrop-filter: blur(15px);
+                  -webkit-backdrop-filter: blur(15px);
+                  color: white;">
+        <!-- Image -->
+        <img src="https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg"
+             class="card-img-top"
+             style="height: 220px; object-fit: cover;"
+             alt="<%= restaurant.name %>">
+        <!-- Info -->
+        <div class="card-body text-center px-2 py-3">
+          <h4 class="fw-bold mb-3 text-uppercase"><%= restaurant.name %></h4>
+          <p class="mb-2"><i class="fa-solid fa-location-dot me-2"></i><strong>Address:</strong> <%= restaurant.address %></p>
+          <p class="mb-3"><i class="fa-solid fa-utensils me-2"></i><strong>Cuisine:</strong> <%= restaurant.category %></p>
+          <p class="mb-3"><i class="fa-solid fa-utensils me-2"></i><strong>Rating:</strong> <%= "⭐️" * restaurant.average_rating || "N/A" %></p>
+        </div>
+        <!-- Buttons -->
+        <div class="card-body pb-4">
+          <div class="d-flex justify-content-center gap-1">
+            <%= link_to restaurant_path(restaurant), class: "btn btn-light fw-semibold d-flex align-items-center justify-content-center gap-2 px-4 py-2" do %>
+              View
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

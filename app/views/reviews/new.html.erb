@@ -1,0 +1,60 @@
+<div class="min-vh-100 d-flex flex-column justify-content-center align-items-center text-center"
+     style="background-image: url('https://images.pexels.com/photos/13674457/pexels-photo-13674457.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;">
+  <!-- Title -->
+  <h1 class="display-2 fw-bold text-light mb-5 p-4">
+    Add a Review for <%= @restaurant.name %>
+  </h1>
+  <!-- Glass Card -->
+  <div class="card shadow-lg border-0 rounded-4 overflow-hidden text-light"
+       style="width: 42rem;
+              background: rgba(255, 255, 255, 0.15);
+              backdrop-filter: blur(15px);
+              -webkit-backdrop-filter: blur(15px);
+              color: white;">
+    <!-- Header Image -->
+    <img src="https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg"
+         class="w-100"
+         style="height: 250px; object-fit: cover; object-position: center;"
+         alt="<%= @restaurant.name %>">
+    <!-- Review Form Section -->
+    <div class="card-body text-center px-5 py-4">
+      <h4 class="fw-bold mb-4">Leave your review 🍽️</h4>
+      <%= simple_form_for([@restaurant, @review]) do |f| %>
+        <div class="text-start">
+          <%= f.input :rating,
+                      label: 'Rating (1–5)',
+                      collection: 1..5,
+                      as: :select,
+                      input_html: { class: 'form-select bg-transparent text-white border-light' },
+                      label_html: { class: 'text-white fw-semibold' } %>
+          <%= f.input :content,
+                      label: 'Your Review',
+                      as: :text,
+                      input_html: { class: 'form-control bg-transparent text-white border-light', rows: 4 },
+                      label_html: { class: 'text-white fw-semibold' } %>
+        </div>
+        <!-- Submit Button -->
+        <div class="d-flex justify-content-center mt-4">
+          <%= f.submit 'Submit Review',
+                       class: 'btn btn-light btn-lg fw-semibold d-flex align-items-center justify-content-center gap-2 px-4 py-2 shadow' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <!-- Navigation Buttons -->
+  <div class="d-flex justify-content-center gap-3 mt-5">
+    <%= link_to restaurant_path(@restaurant),
+                class: "btn btn-light btn-lg fw-semibold d-flex align-items-center justify-content-center gap-2 px-4 py-2 shadow" do %>
+      <i class="fa-solid fa-utensils"></i>
+      Back to Restaurant
+    <% end %>
+    <%= link_to restaurants_path,
+                class: "btn btn-secondary btn-lg fw-semibold d-flex align-items-center justify-content-center gap-2 px-4 py-2 shadow" do %>
+      <i class="fa-solid fa-house"></i>
+      All Restaurants
+    <% end %>
+  </div>
+</div>

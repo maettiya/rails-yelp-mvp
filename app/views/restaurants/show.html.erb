@@ -1,0 +1,68 @@
+<div class="min-vh-100 d-flex flex-column justify-content-center align-items-center text-center"
+     style="background-image: url('https://images.pexels.com/photos/13674457/pexels-photo-13674457.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;">
+  <!-- Title -->
+  <h1 class="display-2 fw-bold text-light mb-5 p-4"><%= @restaurant.name %></h1>
+  <!-- Glass Card -->
+  <div class="card shadow-lg border-0 rounded-4 overflow-hidden text-light"
+       style="max-width: 850px;
+              background: rgba(255, 255, 255, 0.15);
+              backdrop-filter: blur(15px);
+              -webkit-backdrop-filter: blur(15px);">
+    <!-- Hero Image -->
+    <img src="https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg"
+         class="w-100"
+         style="height: 350px; object-fit: cover; object-position: center;"
+         alt="<%= @restaurant.name %>">
+    <!-- Info Section -->
+    <div class="card-body text-center p-5">
+      <h2 class="fw-bold mb-4 text-uppercase"><%= @restaurant.name %></h2>
+      <p class="fs-5 mb-2">
+        <i class="fa-solid fa-location-dot me-2"></i>
+        <strong>Address:</strong> <%= @restaurant.address %>
+      </p>
+      <p class="fs-5 mb-2">
+        <i class="fa-solid fa-utensils me-2"></i>
+        <strong>Cuisine:</strong> <%= @restaurant.category %>
+      </p>
+      <p class="fs-5 mb-2">
+        <i class="fa-solid fa-phone me-2"></i>
+        <strong>Phone:</strong> <%= @restaurant.phone_number %>
+      </p>
+      <!-- Reviews -->
+      <h3 class="mt-5 mb-3 text-light">Reviews</h3>
+      <% if @restaurant.reviews.any? %>
+        <% @restaurant.reviews.each do |review| %>
+          <div class="p-3 rounded-3 shadow-lg mb-3"
+               style="background: rgba(255,255,255,0.15);
+                      backdrop-filter: blur(8px);
+                      -webkit-backdrop-filter: blur(8px);
+                      color: white;">
+            <p class="mb-1 fs-5"><strong><%= "⭐️" * review.rating %></strong></p>
+            <p class="mb-0"><%= review.content %></p>
+          </div>
+        <% end %>
+      <% else %>
+        <p class="text-light-50 fst-italic">No reviews yet — be the first!</p>
+      <% end %>
+      <!-- Buttons -->
+      <div class="d-flex justify-content-center gap-3 mt-5 flex-wrap">
+        <%= link_to new_restaurant_review_path(@restaurant),
+                    class: "btn btn-light fw-semibold d-flex align-items-center justify-content-center gap-2 px-4 py-2 shadow" do %>
+          <i class="fa-solid fa-pen-to-square"></i> Add Review
+        <% end %>
+        <%= link_to restaurants_path,
+                    class: "btn btn-light fw-semibold d-flex align-items-center justify-content-center gap-2 px-4 py-2 shadow" do %>
+          <i class="fa-solid fa-house"></i> All Restaurants
+        <% end %>
+        <%= link_to restaurant_path(@restaurant),
+                    data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                    class: "btn btn-danger fw-semibold d-flex align-items-center justify-content-center gap-2 px-4 py-2 shadow" do %>
+          <i class="fa-solid fa-trash"></i> Delete
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
