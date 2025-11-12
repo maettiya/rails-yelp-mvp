@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create]
   end
 
+  root to: "restaurants#index"
+
   # SHOW ALL RESTAURANTS
   # get "restaurants", to: "restaurants#index", as: "restaurants"
 
