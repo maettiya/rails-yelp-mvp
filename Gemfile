@@ -59,3 +59,7 @@ end
 
 gem 'rspec-rails', group: [ :test ]
 gem 'rails-controller-testing', group: [ :test ]
+
+
+# custom gems
+gem "simple_form"
